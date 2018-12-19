@@ -1,7 +1,7 @@
 //
 // Created by Zhou,Zhiyong(DAPD) on 2018/12/6.
 //
-#include "common_lib.h"
+#include "../common_lib.h"
 
 class Solution {
 public:

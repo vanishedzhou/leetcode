@@ -1,7 +1,7 @@
 //
 // Created by Zhou,Zhiyong(DAPD) on 2018/12/17.
 //
-#include "common_lib.h"
+#include "../common_lib.h"
 class Solution {
 public:
     vector<int> sortArrayByParity(vector<int>& A) {
