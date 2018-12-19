@@ -5,7 +5,7 @@
 #ifndef UNTITLED_MULTI_THREAD_H
 #define UNTITLED_MULTI_THREAD_H
 
-#include "common_lib.h"
+#include "Array/common_lib.h"
 
 class multi_thread {
 

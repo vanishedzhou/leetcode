@@ -1,7 +1,7 @@
 //
 // Created by Zhou,Zhiyong(DAPD) on 2018/12/6.
 //
-#include "../common_lib.h"
+#include "common_lib.h"
 
 /*
  * 先sort；设三个指针，1遍历，3固定最后一个位置，2在1之后；判断累加值大于target则3后移，否则2前移

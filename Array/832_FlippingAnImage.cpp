@@ -1,7 +1,7 @@
 //
 // Created by Zhou,Zhiyong(DAPD) on 2018/12/17.
 //
-#include "../common_lib.h"
+#include "common_lib.h"
 
 /*
  * 找规律，原理是对称交换后取反。若相同则同时取反，不同则交换取反后保持不变
