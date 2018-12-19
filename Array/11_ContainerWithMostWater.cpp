@@ -3,6 +3,10 @@
 //
 #include "../common_lib.h"
 
+/*
+ * 前后两指针，计算较短边围起来的面积，然后移动短边位置重复上述过程
+ */
+
 class Solution1 {
 public:
     int maxArea(vector<int>& height) {

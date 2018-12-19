@@ -2,6 +2,10 @@
 // Created by Zhou,Zhiyong(DAPD) on 2018/12/17.
 //
 #include "../common_lib.h"
+
+/*
+ * 前后向中间移动，判断奇数偶数，相互交换
+ */
 class Solution {
 public:
     vector<int> sortArrayByParity(vector<int>& A) {

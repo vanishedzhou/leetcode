@@ -3,6 +3,10 @@
 //
 #include "../common_lib.h"
 
+/*
+ * 先sort；设三个指针，1遍历，3固定最后一个位置，2在1之后；判断累加值大于target则3后移，否则2前移
+ */
+
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
