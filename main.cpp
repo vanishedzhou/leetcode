@@ -113,8 +113,29 @@ void test_lifecycle() {
     }
 }
 
+enum {
+    ABC = 1,
+    DEF = 2,
+};
+
 int main() {
-    test_lifecycle();
+    std::map<string, string> m;
+    m["1"] = "abc";
+    m["2"] = "de";
+//    cout << (m["3"] == "") << endl;
+    const std::string& pre_val = m["2"];
+//    std::string pre_val = m["2"];
+    if (m.erase("2") == 1) {
+//        cout << "key[1] exists val["<< m["2"] << "], is removed." << endl;
+        cout << "key[1] exists val["<< pre_val << "], is removed." << endl;
+    } else {
+        cout << "key[1] not exists, is removed." << endl;
+    }
+//    for (auto mapIterator = m.begin(); mapIterator != m.end(); ++mapIterator) {
+//        cout << mapIterator->first.c_str() << ":" << mapIterator->second.c_str() << endl;
+//    }
+//    cout << ABC << endl;
+//    test_lifecycle();
 
 //    char a[] = "www%2Ejd%2Ecom";
 //    cout << a << endl;
