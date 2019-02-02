@@ -10,6 +10,7 @@
 #include <boost/algorithm/string/split.hpp>
 #include <sstream>
 #include <string.h>
+#include "utils.h"
 
 
 using namespace std;
@@ -118,19 +119,130 @@ enum {
     DEF = 2,
 };
 
-int main() {
-    std::map<string, string> m;
-    m["1"] = "abc";
-    m["2"] = "de";
-//    cout << (m["3"] == "") << endl;
-    const std::string& pre_val = m["2"];
-//    std::string pre_val = m["2"];
-    if (m.erase("2") == 1) {
-//        cout << "key[1] exists val["<< m["2"] << "], is removed." << endl;
-        cout << "key[1] exists val["<< pre_val << "], is removed." << endl;
-    } else {
-        cout << "key[1] not exists, is removed." << endl;
+class time_elapsed {
+    time_elapsed() {
+
     }
+};
+
+// pa adkg filter symbols
+enum {
+    ADKG_HIT_XBOX = 1,                              // 广告kg 命中xbox词表
+    ADKG_TITLEKG_IRRELE = 2,                        // 广告kg titlekg 不相关
+    ADKG_DESCKG_IRRELE = 4,                         // 广告kg desckg 不相关
+    ADKG_HARDTHRES_FILTER = 8,                      // 广告kg 硬门槛过滤
+    ADKG_SOFTTHRES_FILTER = 16,                     // 广告kg 软门槛过滤
+    ADKG_FITLER_PAMTS = 32,                         // 广告kg 过滤闪投样式
+    ADKG_RM_AD = 64,                                // 广告kg 删除广告
+
+    ADKG_ADDRESSING_QUERY_HIT_DICT = 128,           // 寻址query过滤竞品广告 命中query-url词表
+    ADKG_ADDRESSING_QUERY_IRRELE = 256,             // 寻址query过滤竞品广告 判断为广告不相关
+    ADKG_ADDRESSING_QUERY_FITLER_PAMTS = 512,       // 寻址query过滤竞品广告 过滤闪投样式
+    ADKG_ADDRESSING_QUERY_RM_AD = 1024,             // 寻址query过滤竞品广告 删除广告
+
+    ADKG_QUERYAD_BLK_HIT_Q_W_I = 2048,              // 黑名单词表过滤 query_winfoid_ideaid 维度命中词表
+    ADKG_QUERYAD_BLK_HIT_W_I = 4096,                // 黑名单词表过滤 winfoid_ideaid 维度命中词表
+    ADKG_QUERYAD_BLK_HIT_Q_W = 8192,                // 黑名单词表过滤 query_winfoid 维度命中词表
+    ADKG_QUERYAD_BLK_HIT_Q_I = 16384,               // 黑名单词表过滤 query_ideaid 维度命中词表
+    ADKG_QUERYAD_BLK_HIT_W = 32768,                 // 黑名单词表过滤 winfoid 命中词表
+    ADKG_QUERYAD_BLK_HIT_I = 65536,                 // 黑名单词表过滤 ideaid 命中词表
+    ADKG_QUERYAD_BLK_FILTER_PAMTS = 131072,         // 黑名单词表过滤 删除闪投样式
+    ADKG_QUERYAD_BLK_RM_AD = 262144,                // 黑名单词表过滤 删除广告
+};
+
+class base {
+public:
+    int a = 1;
+};
+
+class child : public base {
+public:
+    int a = 2;
+};
+
+//#define get_base(ch) \
+//    static_cast<base*>(ch)
+//
+//#define get_const_base(ch) \
+//    static_cast<const base*>(ch)
+
+template <typename T>
+class BaseNode {
+public:
+    static T* name() {
+        static T singleton;
+        return &singleton;
+    }
+
+    static void test() {
+        T* t = name();
+        t->f_print();
+    }
+};
+
+class FatherNode {
+public:
+    void f_print() {
+        std::cout << "father node print" << std::endl;
+    }
+
+};
+
+
+int main() {
+
+    BaseNode<FatherNode>::test();
+
+//    std::map<std::string, std::string> map;
+//    map["1"] = "a";
+//    map["2"] = "b";
+//    map["3"] = "c";
+//    std::string t = "5";
+//    const std::string& test = t;
+//    std::cout << map.erase("1") << std::endl;
+//    std::cout << map.erase(test) << std::endl;
+//    std::cout << map.erase("4") << std::endl;
+
+//        base* b = new base();
+//        child* c = new child();
+//        std::cout << b->a << std::endl;
+//        std::cout << c->a << std::endl;
+//        base* n = const_cast<base*>(get_const_base(c));
+//        std::cout << n->a << std::endl;
+
+
+//    uint32_t ad_kg_status = 0;
+//    std::cout << ad_kg_status << std::endl;
+//    ad_kg_status |= ADKG_QUERYAD_BLK_HIT_Q_W_I;
+//    std::cout << ad_kg_status << std::endl;
+//    ad_kg_status |= ADKG_QUERYAD_BLK_HIT_W_I;
+//    std::cout << ad_kg_status << std::endl;
+//    ostringstream oss;
+//    oss << "a" << "b";
+//    const char* x = oss.str().c_str();
+//    cout << x << endl;
+
+//    const char* a = "abc";
+//    char* b = "abca";
+//    cout << strncmp(a,b,3) << endl;
+
+//    std::vector<int> vec = {1,2,3};
+//    Utils utils;
+//    Utils.print_vector_elems<int>(vec, "test print vector");
+
+
+//    std::map<string, string> m;
+//    m["1"] = "abc";
+//    m["2"] = "de";
+////    cout << (m["3"] == "") << endl;
+//    const std::string& pre_val = m["2"];
+////    std::string pre_val = m["2"];
+//    if (m.erase("2") == 1) {
+////        cout << "key[1] exists val["<< m["2"] << "], is removed." << endl;
+//        cout << "key[1] exists val["<< pre_val << "], is removed." << endl;
+//    } else {
+//        cout << "key[1] not exists, is removed." << endl;
+//    }
 //    for (auto mapIterator = m.begin(); mapIterator != m.end(); ++mapIterator) {
 //        cout << mapIterator->first.c_str() << ":" << mapIterator->second.c_str() << endl;
 //    }
