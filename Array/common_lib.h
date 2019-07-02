@@ -6,6 +6,7 @@
 #define UNTITLED_COMMON_LIB_H
 
 #include <vector>
+#include <unordered_map>
 #include <string>
 #include <iostream>
 #include <algorithm>
