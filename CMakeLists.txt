@@ -32,3 +32,8 @@ add_executable(copy_constucted_function grammar/copy_constucted_function.cpp)
 add_executable(AtomicOperation multi_threads/AtomicOperation.cpp)
 add_executable(volatile multi_threads/volatile.cpp)
 add_executable(mutable multi_threads/mutable.cpp)
+add_executable(std_bind grammar/std_bind.cpp)
+add_executable(template grammar/template.cpp)
+
+add_executable(thread_local multi_threads/thread_local.cpp)
+add_executable(AtomicFlag multi_threads/AtomicFlag.cpp)

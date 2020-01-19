@@ -27,6 +27,18 @@ void say_hello() {
     }
 }
 
+void long_thread() {
+    for (int i = 0; i < 10; ++i) {
+        std::chrono::milliseconds duration(1000);
+        std::cout << "long thread : " << i << std::endl;
+        std::this_thread::sleep_for(duration);
+    }
+}
+
+void short_thread(int i) {
+    std::cout << "short thread : " << i << std::endl;
+}
+
 int main(int argc, char *argv[]) {
     // join主线程等待子线程结束，detach则子线程离开主线程不和主线程通信(此处不会继续打印后续数字在终端)
 //    for (int i = 0; i < 10; ++i) {
@@ -43,21 +55,34 @@ int main(int argc, char *argv[]) {
 //    t2.join();
 //    std::cout << "after n:" << n << std::endl;
 
-    // 线程数组
-    std::thread t_list[3];
-    for (int i = 0; i < 3; ++i) {
-        t_list[i] = std::thread(say_noref, i + 1);
-    }
-    for (auto& t : t_list) {
-        // 线程可通过joinable判断是否是活动线程（包括已执行完的线程）
-        if (t.joinable()) {
-            std::cout << "is joinable" << std::endl;
-        }
-        t.join();
-    }
+//    // 线程数组
+//    std::thread t_list[3];
+//    for (int i = 0; i < 3; ++i) {
+//        t_list[i] = std::thread(say_noref, i + 1);
+//    }
+//    for (auto& t : t_list) {
+//        // 线程可通过joinable判断是否是活动线程（包括已执行完的线程）
+//        if (t.joinable()) {
+//            std::cout << "is joinable" << std::endl;
+//        }
+//        t.join();
+//    }
 //    for (int i = 0; i < sizeof(t_list); ++i) {
 //        t_list[i].join();
 //    }
+
+    // 测试多个join是否依次等待执行
+    std::cout << "before t1 t2 define" << std::endl;
+    std::thread t1(long_thread);
+    std::cout << "after t1 define" << std::endl;
+    std::thread t2(short_thread, 999);
+    std::cout << "after t2 define" << std::endl;
+
+    std::cout << "before t1 join" << std::endl;
+    t1.join();
+    std::cout << "after t1 join" << std::endl;
+    t2.join();
+    std::cout << "after t2 join" << std::endl;
 
     std::cout << "main ended !" << std::endl;
     return 0;
